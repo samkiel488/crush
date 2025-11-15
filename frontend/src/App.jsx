@@ -1,14 +1,12 @@
 import Home from './components/Home'
 import Navbar from './components/Navbar'
-
+import './index.css'
 
 
 
 const App = () => {
   return (
-      <div style= {{  
-        backgroundColor: 'purple', color: 'white', minHeight: '100vh', padding: '20px', margin: -12 
-        }} > 
+      <div> 
        <Navbar />
        <Home />
       </div>
