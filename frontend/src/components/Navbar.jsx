@@ -2,7 +2,7 @@
 
 const Navbar = () => {
   return (
-    <div>CrushEdu Place International</div>
+    <div>Crush EduPlace International</div>
   )
 }
 
