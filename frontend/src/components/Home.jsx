@@ -1,5 +1,5 @@
 
-const clicked = alert(Math.round(Math.random() * 10))
+const clicked = () => console.log(Math.round(Math.random() * 10))
 
 
 const Button = () => {
