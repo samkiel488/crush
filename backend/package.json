@@ -2,9 +2,9 @@
   "name": "crush_backend",
   "version": "1.0.0",
   "description": "",
-  "main": "crush.js",
+  "main": "src/crush.js",
   "scripts": {
-    "dev": "node crush.js",
+    "dev": "node src/crush.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
