@@ -20,7 +20,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="*" element={<h2>404 - This page doesn't exist</h2>} />
+          <Route path="*" element={<h2>404 - This page doesn't exist yet</h2>} />
         </Routes>
 
 
