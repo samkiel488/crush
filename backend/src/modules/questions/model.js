@@ -33,3 +33,6 @@ const questionSchema = new mongoose.Schema({
     enum: ['easy', 'medium', 'hard'],
     default: 'medium'
   },
+  year: {
+    type: Number,
+    min: 2000,
