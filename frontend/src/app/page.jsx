@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Instagram } from 'lucide-react'
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
           </h1>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Your ultimate JAMB exam preparation platform. Master the questions,
-            ace the exam, and secure your future.
+            crush the exam, and secure your future.
           </p>
           <div className="space-x-4">
             <Link
@@ -21,10 +22,10 @@ export default function Home() {
               Get Started
             </Link>
             <Link
-              href="/questions"
+              href="/community"
               className="border-2 border-base-100 text-base-100 px-8 py-3 rounded-lg font-semibold hover:bg-base-100 hover:text-primary transition-colors"
             >
-              Browse Questions
+              Join Community
             </Link>
           </div>
         </div>
@@ -108,6 +109,23 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+            {/* Footer */}
+      <section className="py-16">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-xl text-gray-600 mb-8">
+            ©️2025 Crush EduPlace Intl. All Left Researved.
+          </p>
+          <Link
+            href="http://instagram.com/crush_eduplace"
+            className=""
+          >
+            <Instagram />
+          </Link>
+        </div>
+      </section>
+
+
     </div>
   );
 }
