@@ -13,34 +13,23 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(() => {
+    // Initialize from localStorage or default to "light"
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("d2c_theme") || "light";
+    }
+    return "light";
+  });
 
   useEffect(() => {
-    // Get initial theme from localStorage or prefers-color-scheme
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
-    setTheme(initialTheme);
-  }, []);
-
-  useEffect(() => {
-    // Apply theme to document
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
+    // Persist theme to localStorage
+    if (theme) {
+      localStorage.setItem("d2c_theme", theme);
+    }
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme((prev) => {
-      if (prev === "light") return "dark";
-      if (prev === "dark") return "eye-care";
-      return "light";
-    });
-  };
-
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );

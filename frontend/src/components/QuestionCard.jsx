@@ -1,116 +1,72 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addBookmark, removeBookmark } from '../store/slices/questionsSlice';
+import React, { useState } from 'react';
 
-const QuestionCard = ({ question, showAnswer = false, onAnswerSelect }) => {
-  const [selectedAnswer, setSelectedAnswer] = useState('');
-  const [showExplanation, setShowExplanation] = useState(false);
-  const dispatch = useDispatch();
-  const { bookmarks } = useSelector((state) => state.questions);
+export default function QuestionCard({ question, showAnswer, onAnswerSelect }) {
+  const [selectedOption, setSelectedOption] = useState('');
+  const [isBookmarked, setIsBookmarked] = useState(false);
 
-  const isBookmarked = bookmarks.includes(question.id);
-
-  const handleBookmark = () => {
-    if (isBookmarked) {
-      dispatch(removeBookmark(question.id));
-    } else {
-      dispatch(addBookmark(question.id));
-    }
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
+    onAnswerSelect(question.id, option);
   };
 
-  const handleAnswerSelect = (answer) => {
-    setSelectedAnswer(answer);
-    if (onAnswerSelect) {
-      onAnswerSelect(question.id, answer);
+  const getDifficultyColor = (difficulty) => {
+    switch (difficulty) {
+      case 'easy':
+        return 'bg-success/20 border-success';
+      case 'medium':
+        return 'bg-warning/20 border-warning';
+      case 'hard':
+        return 'bg-error/20 border-error';
+      default:
+        return 'bg-base-200 border-base-content/20';
     }
-  };
-
-  const getOptionClass = (option) => {
-    if (!showAnswer) {
-      return selectedAnswer === option
-        ? 'bg-blue-100 border-blue-300'
-        : 'hover:bg-gray-50';
-    }
-
-    if (option === question.correctAnswer) {
-      return 'bg-green-100 border-green-300 text-green-800';
-    }
-
-    if (selectedAnswer === option && option !== question.correctAnswer) {
-      return 'bg-red-100 border-red-300 text-red-800';
-    }
-
-    return 'opacity-50';
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 mb-4">
+    <div className="bg-base-100 rounded-lg shadow-md p-6 mb-4">
       <div className="flex justify-between items-start mb-4">
-        <div className="flex-1">
           <div className="flex items-center space-x-2 mb-2">
-            <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
+            <span className="bg-primary/20 text-primary text-xs px-2 py-1 rounded">
               {question.subject}
             </span>
-            <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">
+            <span className="bg-base-200 text-base-content text-xs px-2 py-1 rounded">
               {question.topic}
             </span>
-            <span className={`text-xs px-2 py-1 rounded ${
-              question.difficulty === 'easy' ? 'bg-green-100 text-green-800' :
-              question.difficulty === 'medium' ? 'bg-yellow-100 text-yellow-800' :
-              'bg-red-100 text-red-800'
-            }`}>
-              {question.difficulty}
-            </span>
           </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-4">
-            {question.question}
-          </h3>
+          <div className={`ml-4 p-2 rounded-full cursor-pointer ${
+            isBookmarked ? 'text-red-500' : 'text-base-content/50 hover:text-red-500'
+          }`} onClick={() => setIsBookmarked(!isBookmarked)}>
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          </div>
         </div>
-
-        <button
-          onClick={handleBookmark}
-          className={`ml-4 p-2 rounded-full ${
-            isBookmarked ? 'text-red-500' : 'text-gray-400 hover:text-red-500'
-          }`}
-        >
-          {isBookmarked ? '❤️' : '🤍'}
-        </button>
-      </div>
-
-      <div className="space-y-3 mb-4">
-        {question.options.map((option, index) => (
-          <button
-            key={index}
-            onClick={() => handleAnswerSelect(option)}
-            disabled={showAnswer}
-            className={`w-full text-left p-3 border-2 rounded-lg transition-colors ${getOptionClass(option)}`}
-          >
-            <span className="font-medium mr-2">
-              {String.fromCharCode(65 + index)}.
-            </span>
-            {option}
-          </button>
-        ))}
-      </div>
-
-      {showAnswer && question.explanation && (
-        <div className="mt-4">
-          <button
-            onClick={() => setShowExplanation(!showExplanation)}
-            className="text-blue-600 hover:text-blue-800 font-medium"
-          >
-            {showExplanation ? 'Hide' : 'Show'} Explanation
-          </button>
-
-          {showExplanation && (
-            <div className="mt-2 p-3 bg-gray-50 rounded-lg">
-              <p className="text-gray-700">{question.explanation}</p>
-            </div>
-          )}
+        <h3 className="text-lg font-medium text-base-content mb-4">
+          {question.question}
+        </h3>
+        <div className="space-y-3 mb-4">
+          {question.options.map((option, index) => (
+            <label key={index} className="flex items-center space-x-3 cursor-pointer">
+              <input
+                type="radio"
+                name={`question-${question.id}`}
+                value={option}
+                checked={selectedOption === option}
+                onChange={() => handleOptionChange(option)}
+                className="radio radio-primary"
+              />
+              <span className="text-base-content">{option}</span>
+            </label>
+          ))}
         </div>
-      )}
-    </div>
-  );
-};
-
-export default QuestionCard;
+        {showAnswer && (
+          <div className="mt-4 p-3 bg-base-200 rounded-lg">
+            <p className="text-sm font-medium text-base-content mb-2">Correct Answer:</p>
+            <p className="text-base-content">{question.correctAnswer}</p>
+            <p className="text-sm font-medium text-base-content mt-2 mb-2">Explanation:</p>
+            <p className="text-base-content">{question.explanation}</p>
+          </div>
+        )}
+      </div>
+    );
+  }

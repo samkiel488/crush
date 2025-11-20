@@ -40,9 +40,9 @@ const ExamTimer = () => {
   if (!isExamActive) return null;
 
   return (
-    <div className="fixed top-4 right-4 bg-white shadow-lg rounded-lg p-4 border-2 border-gray-200">
+    <div className="fixed top-4 right-4 bg-base-100 shadow-lg rounded-lg p-4 border-2 border-base-content/20">
       <div className="text-center">
-        <div className="text-sm text-gray-600 mb-1">Time Remaining</div>
+        <div className="text-sm text-base-content/70 mb-1">Time Remaining</div>
         <div className={`text-2xl font-bold ${getTimerColor()}`}>
           {formatTime(timer)}
         </div>

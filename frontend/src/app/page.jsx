@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-base-100">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20">
         <div className="container mx-auto px-4 text-center">
@@ -22,7 +22,7 @@ export default function Home() {
             </Link>
             <Link
               href="/questions"
-              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors"
+              className="border-2 border-base-100 text-base-100 px-8 py-3 rounded-lg font-semibold hover:bg-base-100 hover:text-primary transition-colors"
             >
               Browse Questions
             </Link>
@@ -51,7 +51,7 @@ export default function Home() {
                 <span className="text-2xl">⏱️</span>
               </div>
               <h3 className="text-xl font-semibold mb-2">Exam Simulator</h3>
-              <p className="text-gray-600">
+              <p className="text-base-content/70">
                 Practice under real exam conditions with timed mock tests and performance analytics.
               </p>
             </div>
@@ -61,7 +61,7 @@ export default function Home() {
                 <span className="text-2xl">📊</span>
               </div>
               <h3 className="text-xl font-semibold mb-2">Progress Tracking</h3>
-              <p className="text-gray-600">
+              <p className="text-base-content/70">
                 Monitor your progress, identify weak areas, and track your improvement over time.
               </p>
             </div>
@@ -75,7 +75,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-3xl font-bold text-blue-600 mb-2">10,000+</div>
-              <div className="text-gray-600">Questions</div>
+              <div className="text-base-content/70">Questions</div>
             </div>
             <div>
               <div className="text-3xl font-bold text-green-600 mb-2">50,000+</div>
@@ -83,7 +83,7 @@ export default function Home() {
             </div>
             <div>
               <div className="text-3xl font-bold text-purple-600 mb-2">95%</div>
-              <div className="text-gray-600">Success Rate</div>
+              <div className="text-base-content/70">Success Rate</div>
             </div>
             <div>
               <div className="text-3xl font-bold text-red-600 mb-2">24/7</div>
@@ -102,7 +102,7 @@ export default function Home() {
           </p>
           <Link
             href="/auth/register"
-            className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            className="bg-primary text-primary-content px-8 py-3 rounded-lg font-semibold hover:bg-primary-focus transition-colors"
           >
             Start Your Journey Today
           </Link>

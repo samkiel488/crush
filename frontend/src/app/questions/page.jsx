@@ -76,7 +76,7 @@ export default function QuestionsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-bg text-text">
+    <div className="min-h-screen bg-base-100 text-base-content">
       <Header />
 
       <div className="container mx-auto px-4 py-8">
@@ -87,7 +87,7 @@ export default function QuestionsPage() {
           className="mb-8"
         >
           <h1 className="text-3xl font-bold mb-4">Question Bank</h1>
-          <p className="text-muted mb-6">
+          <p className="text-base-content/70 mb-6">
             Practice with our comprehensive collection of JAMB questions.
           </p>
 
@@ -148,7 +148,7 @@ export default function QuestionsPage() {
 
         {!loading && questions.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-muted">No questions found matching your criteria.</p>
+            <p className="text-base-content/70">No questions found matching your criteria.</p>
           </div>
         )}
       </div>

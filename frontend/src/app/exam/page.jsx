@@ -92,7 +92,7 @@ export default function ExamPage() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading exam...</p>
+          <p className="text-base-content/70">Loading exam...</p>
         </div>
       </div>
     );
@@ -102,7 +102,7 @@ export default function ExamPage() {
   const answeredQuestions = Object.keys(answers).length;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-base-100">
       <ExamTimer />
 
       <div className="container mx-auto px-4 py-8">
