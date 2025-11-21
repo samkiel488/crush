@@ -42,7 +42,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-base-content/20 mt-8 pt-8 text-center text-base-content/70">
-          <p>&copy; 2024 DEVOUR TO CRUSH. All rights reserved.</p>
+          <p>&copy; 2025 Crush EduPlace Intl. All rights reserved.</p>
         </div>
       </div>
     </footer>

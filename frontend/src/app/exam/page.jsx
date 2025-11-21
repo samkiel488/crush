@@ -89,9 +89,9 @@ export default function ExamPage() {
 
   if (!currentExam) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-base-100 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
           <p className="text-base-content/70">Loading exam...</p>
         </div>
       </div>
@@ -108,21 +108,21 @@ export default function ExamPage() {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
           {/* Exam Header */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <div className="bg-base-100 rounded-lg shadow-md p-6 mb-6">
             <div className="flex justify-between items-center mb-4">
-              <h1 className="text-2xl font-bold text-gray-900">{currentExam.title}</h1>
-              <div className="text-sm text-gray-600">
+              <h1 className="text-2xl font-bold text-base-content">{currentExam.title}</h1>
+              <div className="text-sm text-base-content/70">
                 Question {currentQuestionIndex + 1} of {currentExam.questions.length}
               </div>
             </div>
 
             <div className="flex justify-between items-center">
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-base-content/70">
                 Answered: {answeredQuestions} / {currentExam.questions.length}
               </div>
-              <div className="w-full max-w-md bg-gray-200 rounded-full h-2 ml-4">
+              <div className="w-full max-w-md bg-base-200 rounded-full h-2 ml-4">
                 <div
-                  className="bg-blue-600 h-2 rounded-full"
+                  className="bg-primary h-2 rounded-full"
                   style={{ width: `${(answeredQuestions / currentExam.questions.length) * 100}%` }}
                 ></div>
               </div>
@@ -136,12 +136,12 @@ export default function ExamPage() {
           />
 
           {/* Navigation */}
-          <div className="bg-white rounded-lg shadow-md p-6 mt-6">
+          <div className="bg-base-100 rounded-lg shadow-md p-6 mt-6">
             <div className="flex justify-between items-center">
               <button
                 onClick={prevQuestion}
                 disabled={currentQuestionIndex === 0}
-                className="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 disabled:opacity-50"
+                className="btn btn-ghost"
               >
                 Previous
               </button>
@@ -151,12 +151,12 @@ export default function ExamPage() {
                   <button
                     key={index}
                     onClick={() => setCurrentQuestionIndex(index)}
-                    className={`w-8 h-8 rounded-full text-sm font-medium ${
+                    className={`btn btn-sm ${
                       index === currentQuestionIndex
-                        ? 'bg-blue-600 text-white'
+                        ? 'btn-primary'
                         : answers[currentExam.questions[index].id]
-                        ? 'bg-green-500 text-white'
-                        : 'bg-gray-200 text-gray-700'
+                        ? 'btn-success'
+                        : 'btn-ghost'
                     }`}
                   >
                     {index + 1}
@@ -168,14 +168,14 @@ export default function ExamPage() {
                 <button
                   onClick={handleSubmitExam}
                   disabled={loading}
-                  className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 disabled:opacity-50"
+                  className="btn btn-success"
                 >
                   {loading ? 'Submitting...' : 'Submit Exam'}
                 </button>
               ) : (
                 <button
                   onClick={nextQuestion}
-                  className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
+                  className="btn btn-primary"
                 >
                   Next
                 </button>

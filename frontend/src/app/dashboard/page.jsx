@@ -36,10 +36,10 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-base-100 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading dashboard...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-base-content/70">Loading dashboard...</p>
         </div>
       </div>
     );
@@ -47,12 +47,12 @@ export default function DashboardPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-base-100 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-red-600 mb-4">Error loading dashboard: {error}</p>
+          <p className="text-error mb-4">Error loading dashboard: {error}</p>
           <button
             onClick={fetchDashboardData}
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            className="btn btn-primary"
           >
             Try Again
           </button>
@@ -62,57 +62,57 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-base-100">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-3xl font-bold text-gray-900 mb-8">Dashboard</h1>
+          <h1 className="text-3xl font-bold text-base-content mb-8">Dashboard</h1>
 
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="bg-base-100 rounded-lg shadow-md p-6">
               <div className="flex items-center">
-                <div className="bg-blue-100 p-3 rounded-full">
+                <div className="bg-primary/10 p-3 rounded-full">
                   <span className="text-2xl">📚</span>
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm text-gray-600">Total Questions</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.totalQuestions}</p>
+                  <p className="text-sm text-base-content/70">Total Questions</p>
+                  <p className="text-2xl font-bold text-base-content">{stats.totalQuestions}</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="bg-base-100 rounded-lg shadow-md p-6">
               <div className="flex items-center">
-                <div className="bg-green-100 p-3 rounded-full">
+                <div className="bg-success/10 p-3 rounded-full">
                   <span className="text-2xl">✅</span>
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm text-gray-600">Exams Completed</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.completedExams}</p>
+                  <p className="text-sm text-base-content/70">Exams Completed</p>
+                  <p className="text-2xl font-bold text-base-content">{stats.completedExams}</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="bg-base-100 rounded-lg shadow-md p-6">
               <div className="flex items-center">
-                <div className="bg-yellow-100 p-3 rounded-full">
+                <div className="bg-accent/10 p-3 rounded-full">
                   <span className="text-2xl">📊</span>
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm text-gray-600">Average Score</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.averageScore}%</p>
+                  <p className="text-sm text-base-content/70">Average Score</p>
+                  <p className="text-2xl font-bold text-base-content">{stats.averageScore}%</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="bg-base-100 rounded-lg shadow-md p-6">
               <div className="flex items-center">
-                <div className="bg-red-100 p-3 rounded-full">
+                <div className="bg-error/10 p-3 rounded-full">
                   <span className="text-2xl">🎯</span>
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm text-gray-600">Weak Topics</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.weakTopics.length}</p>
+                  <p className="text-sm text-base-content/70">Weak Topics</p>
+                  <p className="text-2xl font-bold text-base-content">{stats.weakTopics.length}</p>
                 </div>
               </div>
             </div>
@@ -120,16 +120,16 @@ export default function DashboardPage() {
 
           {/* Charts */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Progress Over Time</h2>
+            <div className="bg-base-100 rounded-lg shadow-md p-6">
+              <h2 className="text-xl font-bold text-base-content mb-4">Progress Over Time</h2>
               <AnalyticsChart
                 data={progress.map(p => ({ label: p.date, value: p.score }))}
                 type="line"
               />
             </div>
 
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Subject Performance</h2>
+            <div className="bg-base-100 rounded-lg shadow-md p-6">
+              <h2 className="text-xl font-bold text-base-content mb-4">Subject Performance</h2>
               <AnalyticsChart
                 data={[
                   { label: 'Mathematics', value: 85 },
@@ -144,17 +144,17 @@ export default function DashboardPage() {
           </div>
 
           {/* Weak Topics */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Areas for Improvement</h2>
+          <div className="bg-base-100 rounded-lg shadow-md p-6 mb-8">
+            <h2 className="text-xl font-bold text-base-content mb-4">Areas for Improvement</h2>
             {stats.weakTopics.length === 0 ? (
-              <p className="text-gray-600">Great job! No weak areas identified.</p>
+              <p className="text-base-content/70">Great job! No weak areas identified.</p>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {stats.weakTopics.map((topic, index) => (
-                  <div key={index} className="bg-red-50 border border-red-200 rounded-lg p-4">
-                    <h3 className="font-semibold text-red-800">{topic.name}</h3>
-                    <p className="text-sm text-red-600">Score: {topic.score}%</p>
-                    <p className="text-sm text-gray-600 mt-2">
+                  <div key={index} className="bg-base-200 border border-base-300 rounded-lg p-4">
+                    <h3 className="font-semibold text-error">{topic.name}</h3>
+                    <p className="text-sm text-error/80">Score: {topic.score}%</p>
+                    <p className="text-sm text-base-content/70 mt-2">
                       Focus on practicing more questions in this area.
                     </p>
                   </div>
@@ -164,18 +164,18 @@ export default function DashboardPage() {
           </div>
 
           {/* Recent Activity */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Recent Activity</h2>
+          <div className="bg-base-100 rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold text-base-content mb-4">Recent Activity</h2>
             <div className="space-y-4">
               {progress.slice(0, 5).map((activity, index) => (
-                <div key={index} className="flex items-center justify-between py-2 border-b border-gray-200 last:border-b-0">
+                <div key={index} className="flex items-center justify-between py-2 border-b border-base-300 last:border-b-0">
                   <div>
-                    <p className="font-medium text-gray-900">Completed {activity.subject} Practice</p>
-                    <p className="text-sm text-gray-600">{activity.date}</p>
+                    <p className="font-medium text-base-content">Completed {activity.subject} Practice</p>
+                    <p className="text-sm text-base-content/70">{activity.date}</p>
                   </div>
                   <div className="text-right">
-                    <p className="font-semibold text-gray-900">{activity.score}%</p>
-                    <p className="text-sm text-gray-600">Score</p>
+                    <p className="font-semibold text-base-content">{activity.score}%</p>
+                    <p className="text-sm text-base-content/70">Score</p>
                   </div>
                 </div>
               ))}
