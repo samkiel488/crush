@@ -1,5 +1,6 @@
 "use client";
 import { ThemeProvider, useTheme } from "../utils/theme";
+import { useEffect } from "react";
 
 export default function ThemeWrapper({ children }) {
   return (
@@ -14,8 +15,14 @@ export default function ThemeWrapper({ children }) {
 function ThemeWrapperInner({ children }) {
   const { theme } = useTheme();
 
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      document.documentElement.setAttribute("data-theme", theme);
+    }
+  }, [theme]);
+
   return (
-    <div data-theme={theme} className="min-h-screen bg-base-100 text-base-content transition-colors duration-300">
+    <div className="min-h-screen bg-base-100 text-base-content transition-colors duration-300">
       {children}
     </div>
   );

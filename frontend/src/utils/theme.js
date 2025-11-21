@@ -13,18 +13,28 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(() => {
-    // Initialize from localStorage or default to "light"
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("d2c_theme") || "light";
-    }
-    return "light";
-  });
+  // Default to "light" for SSR-friendly initial render
+  const [theme, setTheme] = useState("light");
 
+  // Hydrate from localStorage on client only
   useEffect(() => {
-    // Persist theme to localStorage
-    if (theme) {
+    try {
+      const saved = localStorage.getItem("d2c_theme");
+      if (saved) setTheme(saved);
+    } catch (err) {
+      // ignore
+    }
+  }, []);
+
+  // Apply theme to <html> data-theme and persist changes
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      document.documentElement.setAttribute("data-theme", theme);
+    }
+    try {
       localStorage.setItem("d2c_theme", theme);
+    } catch (err) {
+      // ignore
     }
   }, [theme]);
 
