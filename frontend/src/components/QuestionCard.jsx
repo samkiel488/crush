@@ -15,7 +15,7 @@ const QuestionCard = ({ question, showAnswer, onAnswerSelect }) => {
   };
 
   return (
-    <div className="bg-base-100 rounded-lg shadow-md p-6 mb-4">
+    <div className="bg-base-100 border border-base-300 rounded-xl shadow p-6">
       <div className="flex justify-between items-start mb-4">
         <div className="flex items-center space-x-2 mb-2">
           <span className="bg-primary/10 text-primary text-xs px-2 py-1 rounded">
@@ -49,7 +49,7 @@ const QuestionCard = ({ question, showAnswer, onAnswerSelect }) => {
           return (
             <label
               key={index}
-              className={`flex items-center p-3 rounded-lg border cursor-pointer transition-colors ${
+              className={`flex items-center p-3 rounded-lg border cursor-pointer transition-all duration-300 ${
                 isSelected
                   ? 'bg-primary/10 border-primary'
                   : 'hover:bg-base-200'
