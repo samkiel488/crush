@@ -72,21 +72,6 @@ export default function QuestionsPage() {
       [questionId]: answer,
     }));
   };
-    setShowAnswers(true);
-  };
-
-  return (
-    <div className="min-h-screen bg-base-100 text-base-content">
-      <Header />
-
-      <div className="container mx-auto px-6 py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-8"
-        >
-          <h1 className="text-3xl font-bold mb-4">Question Bank</h1>
 
   const handleShowAnswers = () => {
     setShowAnswers(true);

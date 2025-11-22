@@ -31,3 +31,13 @@ const Header = () => {
 
           <nav className="hidden md:flex space-x-6">
             <Link href="/questions" className="text-base-content hover:bg-base-200 rounded-xl px-4 py-2 transition-all duration-300">
+              Questions
+            </Link>
+          </nav>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+export default Header;
